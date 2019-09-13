@@ -21,10 +21,15 @@ class MealDetail extends StatelessWidget {
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: <Widget>[
-                  Icon(
-                    Icons.arrow_back,
-                    color: blue,
-                    size: 30.0,
+                  GestureDetector(
+                    onTap: () {
+                      Navigator.pop(context);
+                    },
+                    child: Icon(
+                      Icons.arrow_back,
+                      color: blue,
+                      size: 30.0,
+                    ),
                   ),
                   Icon(
                     FontAwesomeIcons.heart,
@@ -79,7 +84,7 @@ class MealDetail extends StatelessWidget {
                           borderRadius:
                               BorderRadius.all(Radius.circular(50.0))),
                       child: Text(
-                        'Category',
+                        meal.Category,
                         style: TextStyle(
                           color: shadedWhite,
                         ),
@@ -112,7 +117,13 @@ class MealDetail extends StatelessWidget {
                   'Ingredients',
                   style: TextStyle(fontSize: 25.0, fontWeight: FontWeight.bold),
                 ),
-              )
+              ),
+              ListView.builder(
+                  itemCount: meal.Ingredients.length,
+                  itemBuilder: (context, index) => ListTile(
+                        leading: Text("-"),
+                        title: Text(meal.Measurements[index]),
+                      ))
             ],
           ),
         ),

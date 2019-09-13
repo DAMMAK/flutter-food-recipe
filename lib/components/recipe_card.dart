@@ -135,34 +135,38 @@ class RecipeCard extends StatelessWidget {
 
 class CookingButton extends StatelessWidget {
   Color color;
+  final Function onTap;
 
-  CookingButton({this.color});
+  CookingButton({this.color, this.onTap});
 
   @override
   Widget build(BuildContext context) {
     final screenWidth = MediaQuery.of(context).size.width;
     final screenHeight = MediaQuery.of(context).size.height;
     final borderRadius = Radius.circular(60.0);
-    return Container(
-      margin: EdgeInsets.only(top: 7.0),
-      height: 60.0,
-      width: 0.8 * screenWidth,
-      decoration: BoxDecoration(
-          color: color,
-          borderRadius: BorderRadius.only(
-              topRight: borderRadius,
-              bottomRight: borderRadius,
-              bottomLeft: borderRadius)),
-      child: Padding(
-        padding: const EdgeInsets.only(top: 15.0),
-        child: Text(
-          'Start Cooking',
-          style: TextStyle(
-              color: shadedWhite,
-              fontFamily: 'CircleRounded',
-              fontWeight: FontWeight.bold,
-              fontSize: 20.0),
-          textAlign: TextAlign.center,
+    return GestureDetector(
+      onTap: onTap,
+      child: Container(
+        margin: EdgeInsets.only(top: 7.0),
+        height: 60.0,
+        width: 0.8 * screenWidth,
+        decoration: BoxDecoration(
+            color: color,
+            borderRadius: BorderRadius.only(
+                topRight: borderRadius,
+                bottomRight: borderRadius,
+                bottomLeft: borderRadius)),
+        child: Padding(
+          padding: const EdgeInsets.only(top: 15.0),
+          child: Text(
+            'Start Cooking',
+            style: TextStyle(
+                color: shadedWhite,
+                fontFamily: 'CircleRounded',
+                fontWeight: FontWeight.bold,
+                fontSize: 20.0),
+            textAlign: TextAlign.center,
+          ),
         ),
       ),
     );

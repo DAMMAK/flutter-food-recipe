@@ -89,9 +89,9 @@ class _HomeState extends State<Home> {
                 },
                 future: getMealUrl(),
               ),
-              CookingButton(
-                color: btnColor,
-              )
+//              CookingButton(
+//                color: btnColor,
+//              )
             ],
           ),
         ),

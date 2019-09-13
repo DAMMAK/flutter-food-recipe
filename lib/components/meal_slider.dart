@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_swiper/flutter_swiper.dart';
 import 'package:foodrecipes/components/recipe_card.dart';
+import 'package:foodrecipes/pages/meal_detail.dart';
 import 'package:foodrecipes/theme.dart';
 
 import '../model/meal.dart';
@@ -32,7 +33,7 @@ class _MealSliderState extends State<MealSlider> {
     final List<Meal> meals = widget.meals;
     final screenWidth = MediaQuery.of(context).size.width;
     final screenHeight = MediaQuery.of(context).size.height;
-    final cardHeight = 0.5 * screenHeight;
+    final cardHeight = 0.64 * screenHeight;
     final cardWidth = screenWidth;
 
     return Container(
@@ -43,9 +44,26 @@ class _MealSliderState extends State<MealSlider> {
             viewportFraction: 0.8,
             scale: 0.9,
             itemBuilder: (BuildContext context, int index) {
-              return RecipeCard(
-                color: Color(mealColors[index]),
-                meal: meals[index],
+              return Column(
+                children: <Widget>[
+                  RecipeCard(
+                    color: Color(mealColors[index]),
+                    meal: meals[index],
+                  ),
+                  CookingButton(
+                    color: Color(mealColors[index]),
+                    onTap: () {
+                      print(
+                          'Start Cooking Button Pressed at meal ${meals[index].meal}');
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => MealDetail(
+                                    meal: meals[index],
+                                  )));
+                    },
+                  )
+                ],
               );
             }));
   }

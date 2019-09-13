@@ -6,7 +6,6 @@ import '../theme.dart';
 class VideoCard extends StatelessWidget {
   Color color;
   VideoCard({this.color});
-
   @override
   Widget build(BuildContext context) {
     final screenWidth = MediaQuery.of(context).size.width;
