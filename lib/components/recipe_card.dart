@@ -209,14 +209,14 @@ List<Meal> mealData() {
 
 Future<List<Meal>> getMealUrl() async {
   final mealUrl =
-      await http.get('https://www.themealdb.com/api/json/v1/1/latest.php');
+      await http.get('https://foodrecipeapp.herokuapp.com/recipe');
 //  print('Meal Data ${mealUrl.body}');
   final mealDataString = jsonDecode(mealUrl.body);
-//  print('Meal Data => ${mealDataString['meals'][9]}');
+  print('Meal Data => ${mealDataString}');
 
   List<Meal> meals = List<Meal>();
-  for (int i = 0; i < mealDataString['meals'].length; i++) {
-    final Meal meal = Meal.fromJson(mealDataString['meals'][i]);
+  for (int i = 0; i < mealDataString.length; i++) {
+    final Meal meal = Meal.fromJson(mealDataString[i]);
     print(meal);
     meals.add(meal);
   }

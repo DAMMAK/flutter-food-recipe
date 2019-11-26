@@ -27,23 +27,24 @@ class Meal {
   factory Meal.fromJson(Map<String, dynamic> parsedJson) {
     List<String> ingredients = List<String>();
     List<String> measurement = List<String>();
-    for (int i = 1; i <= 20; i++) {
-      if (parsedJson['strIngredient${i}'] != '')
-        ingredients.add(parsedJson['strIngredient${i}']);
-      if (parsedJson['strMeasure${i}'] != '')
-        measurement.add(parsedJson['strMeasure${i}']);
+    for (int i = 0; i <= 19; i++) {
+      if (parsedJson['Ingredients'][i] != '')
+        ingredients.add(parsedJson['Ingredients'][i]);
+      if (parsedJson['Measurements'][i] != '')
+        measurement.add(parsedJson['Measurements'][i]);
     }
 
     return Meal(
-        meal: parsedJson['strMeal'],
-        Area: parsedJson['American'],
-        ThumbImg: parsedJson['strMealThumb'],
-        Category: parsedJson['strCategory'],
-        Id: parsedJson['idMeal'],
+        meal: parsedJson['Name'],
+       // Area: parsedJson['American'],
+        ThumbImg: parsedJson['ThumbImg'],
+        Category: parsedJson['Category'],
+        Id: parsedJson['_id'],
         Ingredients: ingredients,
-        Instruction: parsedJson['strInstructions'],
+        Instruction: parsedJson['Instruction'],
         Measurements: measurement,
-        Video: parsedJson['strYoutube'],
-        Tags: parsedJson['strTags']);
+        Video: parsedJson['Video'],
+      //  Tags: parsedJson['Tags']
+        );
   }
 }
