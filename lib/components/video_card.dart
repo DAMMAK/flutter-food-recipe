@@ -5,7 +5,8 @@ import '../theme.dart';
 
 class VideoCard extends StatelessWidget {
   Color color;
-  VideoCard({this.color});
+  final String videoId;
+  VideoCard({this.color, @required this.videoId});
   @override
   Widget build(BuildContext context) {
     final screenWidth = MediaQuery.of(context).size.width;
@@ -21,7 +22,7 @@ class VideoCard extends StatelessWidget {
           width: cardWidth,
           child: YoutubePlayer(
             context: context,
-            videoId: "iLnmTe5Q2Qw",
+            videoId: this.videoId,
             flags: YoutubePlayerFlags(
               autoPlay: true,
               showVideoProgressIndicator: true,

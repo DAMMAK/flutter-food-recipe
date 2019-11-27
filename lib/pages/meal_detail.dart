@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:foodrecipes/components/favourite.dart';
 import 'package:foodrecipes/components/video_card.dart';
 import 'package:foodrecipes/model/meal.dart';
 
@@ -8,11 +9,16 @@ import '../theme.dart';
 class MealDetail extends StatelessWidget {
   Meal meal;
 
-  MealDetail({this.meal});
+  MealDetail({this.meal}){
+  //TODO Get Meal Favourite Status
+
+  }
+
   @override
   Widget build(BuildContext context) {
     final double height = MediaQuery.of(context).size.height;
     final double width = MediaQuery.of(context).size.width;
+
     return Scaffold(
       body: SafeArea(
         child: Container(
@@ -35,9 +41,25 @@ class MealDetail extends StatelessWidget {
                           size: 30.0,
                         ),
                       ),
-                      Icon(
-                        FontAwesomeIcons.heart,
-                        color: Colors.red,
+                      GestureDetector(
+                        onTap: (){
+                          if(meal.isFavourite == null){
+                            Favourite().addFavourite(meal.meal, meal.Id);
+                          }
+
+                        },
+                        child: meal.isFavourite != null ? Icon(
+                          Icons.favorite,
+                          color: Colors.red,
+
+                        ):
+                        Icon(
+                          Icons.favorite_border,
+                          color: Colors.red,
+
+                        )
+                        ,
+
                       )
                     ],
                   ),
@@ -74,7 +96,7 @@ class MealDetail extends StatelessWidget {
                   SizedBox(
                     height: 20.0,
                   ),
-                  VideoCard(color: Colors.blue),
+                  VideoCard(color: Colors.blue, videoId: this.meal.Video,),
                   Padding(
                     padding: const EdgeInsets.only(top: 15.0),
                     child: Row(
@@ -123,20 +145,21 @@ class MealDetail extends StatelessWidget {
                           fontSize: 25.0, fontWeight: FontWeight.bold),
                     ),
                   ),
-                  Container(
-                    height: double.maxFinite,
-                    // color: Colors.orange,
-                    child: ListView.builder(
-                        padding: EdgeInsets.all(0.0),
-                        itemCount: meal.Ingredients.length,
-                        itemBuilder: (context, index) => Container(
-                              height: 20.0,
-                              child: ListTile(
-                                leading: Text("-"),
-                                title: Text(meal.Ingredients[index].toString()),
-                              ),
-                            )),
-                  )
+                  ListView.builder(
+                    shrinkWrap: true,
+                      padding: EdgeInsets.all(0.0),
+                      itemCount: meal.Ingredients.length,
+                      itemBuilder: (context, index) => Container(
+  height: 30.0,
+                            child: ListTile(
+                              leading: Text("-", style: TextStyle(
+                                fontSize: 18.0
+                              ),),
+                              title: Text(meal.Ingredients[index].toString(), style: TextStyle(
+                                fontSize: 18.0
+                              ),),
+                            ),
+                          ))
                 ],
               ),
             ),

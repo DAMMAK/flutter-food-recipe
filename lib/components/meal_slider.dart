@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_swiper/flutter_swiper.dart';
+import 'package:foodrecipes/components/favourite.dart';
 import 'package:foodrecipes/components/recipe_card.dart';
 import 'package:foodrecipes/pages/meal_detail.dart';
 import 'package:foodrecipes/theme.dart';
@@ -20,7 +21,7 @@ var mealColors = [
 ];
 
 class MealSlider extends StatefulWidget {
-  final List<Meal> meals;
+   List<Meal> meals;
   MealSlider({Key key, @required this.meals}) : super(key: key);
 
   @override
@@ -28,6 +29,8 @@ class MealSlider extends StatefulWidget {
 }
 
 class _MealSliderState extends State<MealSlider> {
+
+
   @override
   Widget build(BuildContext context) {
     final List<Meal> meals = widget.meals;
@@ -66,5 +69,17 @@ class _MealSliderState extends State<MealSlider> {
                 ],
               );
             }));
+  }
+
+  @override
+  void initState() {
+    FutureBuilder(
+      future: Favourite().getAllFavourite(widget.meals),
+      builder: (BuildContext context, AsyncSnapshot snapshot){
+        if(snapshot.data !=null){
+          widget.meals = snapshot.data;
+        }
+      }
+    );
   }
 }

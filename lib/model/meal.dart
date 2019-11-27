@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:youtube_player_flutter/youtube_player_flutter.dart';
 
 class Meal {
   String Id;
@@ -11,6 +12,7 @@ class Meal {
   String Video;
   List<String> Ingredients;
   List<String> Measurements;
+  bool isFavourite;
 
   Meal(
       {this.Id,
@@ -43,7 +45,7 @@ class Meal {
         Ingredients: ingredients,
         Instruction: parsedJson['Instruction'],
         Measurements: measurement,
-        Video: parsedJson['Video'],
+        Video: YoutubePlayer.convertUrlToId(parsedJson['Video'].toString()),
       //  Tags: parsedJson['Tags']
         );
   }
