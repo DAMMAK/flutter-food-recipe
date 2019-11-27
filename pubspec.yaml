@@ -27,19 +27,17 @@ dependencies:
   http: ^0.12.0+2
   flutter_swiper: ^1.1.6
   youtube_player_flutter: ^4.1.0
-
+  flutter_spinkit:
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
-
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
 
 # The following section is specific to Flutter.
 flutter:
-
   # The following line ensures that the Material Icons font is
   # included with your application, so that you can use the icons in
   # the material Icons class.
@@ -62,9 +60,9 @@ flutter:
   # list giving the asset and other descriptors for the font. For
   # example:
   fonts:
-   - family: CircleRounded
-     fonts:
-     - asset: fonts/CirceRounded-AltBold.otf
+    - family: CircleRounded
+      fonts:
+        - asset: fonts/CirceRounded-AltBold.otf
   #   - family: Trajan Pro
   #     fonts:
   #       - asset: fonts/TrajanPro.ttf

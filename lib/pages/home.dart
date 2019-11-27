@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:flutter_swiper/flutter_swiper.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:foodrecipes/components/recipe_card.dart';
@@ -27,6 +28,8 @@ class _HomeState extends State<Home> {
 
   @override
   Widget build(BuildContext context) {
+    final double height = MediaQuery.of(context).size.height;
+    final double width = MediaQuery.of(context).size.width;
     return Scaffold(
       bottomNavigationBar: BottomNavigationBar(items: [
         BottomNavigationBarItem(
@@ -84,7 +87,13 @@ class _HomeState extends State<Home> {
                   if (snapshot.data != null) {
                     return MealSlider(meals: snapshot.data);
                   } else {
-                    return Text("loading");
+                    return Transform.translate(
+                      offset: Offset(0.0, height * 0.25),
+                      child: SpinKitFadingFour(
+                        size: 100.0,
+                        color: Colors.blue,
+                      ),
+                    );
                   }
                 },
                 future: getMealUrl(),

@@ -11,120 +11,135 @@ class MealDetail extends StatelessWidget {
   MealDetail({this.meal});
   @override
   Widget build(BuildContext context) {
+    final double height = MediaQuery.of(context).size.height;
+    final double width = MediaQuery.of(context).size.width;
     return Scaffold(
       body: SafeArea(
-        child: Padding(
-          padding: const EdgeInsets.all(20.0),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: <Widget>[
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        child: Container(
+          child: SingleChildScrollView(
+            child: Padding(
+              padding: const EdgeInsets.all(20.0),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: <Widget>[
-                  GestureDetector(
-                    onTap: () {
-                      Navigator.pop(context);
-                    },
-                    child: Icon(
-                      Icons.arrow_back,
-                      color: blue,
-                      size: 30.0,
-                    ),
-                  ),
-                  Icon(
-                    FontAwesomeIcons.heart,
-                    color: Colors.red,
-                  )
-                ],
-              ),
-              SizedBox(
-                height: 10.0,
-              ),
-              Row(
-                children: <Widget>[
-                  Text(
-                    'Sweet',
-                    style:
-                        TextStyle(fontSize: 40.0, fontFamily: 'CircleRounded'),
-                  ),
-                  SizedBox(
-                    width: 10.0,
-                  ),
-                  Text(
-                    'Vanilla',
-                    style: TextStyle(
-                        fontSize: 40.0,
-                        color: Colors.orangeAccent,
-                        fontFamily: 'CircleRounded',
-                        fontWeight: FontWeight.bold),
-                  )
-                ],
-              ),
-              Text(
-                'Exclair',
-                style: TextStyle(
-                    fontSize: 40.0,
-                    fontFamily: 'CircleRounded',
-                    fontWeight: FontWeight.bold),
-              ),
-              SizedBox(
-                height: 20.0,
-              ),
-              VideoCard(color: Colors.blue),
-              Padding(
-                padding: const EdgeInsets.only(top: 15.0),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: <Widget>[
-                    Container(
-                      padding:
-                          EdgeInsets.symmetric(vertical: 9.0, horizontal: 20.0),
-                      decoration: BoxDecoration(
-                          color: green.withOpacity(0.5),
-                          borderRadius:
-                              BorderRadius.all(Radius.circular(50.0))),
-                      child: Text(
-                        meal.Category,
-                        style: TextStyle(
-                          color: shadedWhite,
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: <Widget>[
+                      GestureDetector(
+                        onTap: () {
+                          Navigator.pop(context);
+                        },
+                        child: Icon(
+                          Icons.arrow_back,
+                          color: blue,
+                          size: 30.0,
                         ),
                       ),
-                    ),
-                    Row(
+                      Icon(
+                        FontAwesomeIcons.heart,
+                        color: Colors.red,
+                      )
+                    ],
+                  ),
+                  SizedBox(
+                    height: 10.0,
+                  ),
+                  Row(
+                    children: <Widget>[
+                      Text(
+                        'Sweet',
+                        style: TextStyle(
+                            fontSize: 40.0, fontFamily: 'CircleRounded'),
+                      ),
+                      SizedBox(
+                        width: 10.0,
+                      ),
+                      Text(
+                        'Vanilla',
+                        style: TextStyle(
+                            fontSize: 40.0,
+                            color: Colors.orangeAccent,
+                            fontFamily: 'CircleRounded',
+                            fontWeight: FontWeight.bold),
+                      )
+                    ],
+                  ),
+                  Text(
+                    'Exclair',
+                    style: TextStyle(
+                        fontSize: 40.0,
+                        fontFamily: 'CircleRounded',
+                        fontWeight: FontWeight.bold),
+                  ),
+                  SizedBox(
+                    height: 20.0,
+                  ),
+                  VideoCard(color: Colors.blue),
+                  Padding(
+                    padding: const EdgeInsets.only(top: 15.0),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: <Widget>[
-                        Icon(
-                          FontAwesomeIcons.clock,
-                          color: Colors.black,
+                        Container(
+                          padding: EdgeInsets.symmetric(
+                              vertical: 9.0, horizontal: 20.0),
+                          decoration: BoxDecoration(
+                              color: green.withOpacity(0.5),
+                              borderRadius:
+                                  BorderRadius.all(Radius.circular(50.0))),
+                          child: Text(
+                            meal.Category,
+                            style: TextStyle(
+                              color: shadedWhite,
+                            ),
+                          ),
                         ),
-                        SizedBox(
-                          width: 12.0,
-                        ),
-                        Text(
-                          '240 minutes',
-                          style: TextStyle(
+                        Row(
+                          children: <Widget>[
+                            Icon(
+                              FontAwesomeIcons.clock,
                               color: Colors.black,
-                              fontWeight: FontWeight.bold,
-                              fontSize: 16.0),
-                        )
+                            ),
+                            SizedBox(
+                              width: 12.0,
+                            ),
+                            Text(
+                              '240 minutes',
+                              style: TextStyle(
+                                  color: Colors.black,
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 16.0),
+                            )
+                          ],
+                        ),
                       ],
                     ),
-                  ],
-                ),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.only(top: 30.0),
+                    child: Text(
+                      'Ingredients',
+                      style: TextStyle(
+                          fontSize: 25.0, fontWeight: FontWeight.bold),
+                    ),
+                  ),
+                  Container(
+                    height: double.maxFinite,
+                    // color: Colors.orange,
+                    child: ListView.builder(
+                        padding: EdgeInsets.all(0.0),
+                        itemCount: meal.Ingredients.length,
+                        itemBuilder: (context, index) => Container(
+                              height: 20.0,
+                              child: ListTile(
+                                leading: Text("-"),
+                                title: Text(meal.Ingredients[index].toString()),
+                              ),
+                            )),
+                  )
+                ],
               ),
-              Padding(
-                padding: const EdgeInsets.only(top: 30.0),
-                child: Text(
-                  'Ingredients',
-                  style: TextStyle(fontSize: 25.0, fontWeight: FontWeight.bold),
-                ),
-              ),
-              ListView.builder(
-                  itemCount: meal.Ingredients.length,
-                  itemBuilder: (context, index) => ListTile(
-                        leading: Text("-"),
-                        title: Text(meal.Measurements[index]),
-                      ))
-            ],
+            ),
           ),
         ),
       ),
