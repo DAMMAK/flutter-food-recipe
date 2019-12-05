@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:flutter_swiper/flutter_swiper.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:foodrecipes/components/favourite.dart';
 import 'package:foodrecipes/components/recipe_card.dart';
 import 'package:foodrecipes/components/meal_slider.dart';
 import '../model/meal.dart';
@@ -15,10 +16,12 @@ class Home extends StatefulWidget {
 class _HomeState extends State<Home> {
   List<Meal> meals;
 
+
 //  @override
 //  void initState() {
 //    super.initState();
-//    getMeals();
+////    getMeals();
+//
 //  }
 //
 //  Future getMeals() async {
@@ -85,6 +88,7 @@ class _HomeState extends State<Home> {
               FutureBuilder(
                 builder: (BuildContext context, AsyncSnapshot snapshot) {
                   if (snapshot.data != null) {
+                 //   Favourite().getAllFavourite(snapshot.data);
                     return MealSlider(meals: snapshot.data);
                   } else {
                     return Transform.translate(
@@ -102,9 +106,9 @@ class _HomeState extends State<Home> {
 //                color: btnColor,
 //              )
             ],
-          ),
-        ),
       ),
+    ),
+    ),
     );
   }
 }

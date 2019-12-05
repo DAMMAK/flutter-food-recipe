@@ -1,8 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:foodrecipes/pages/home.dart';
 import 'package:foodrecipes/pages/meal_detail.dart';
+import 'package:provider/provider.dart';
 
-void main() => runApp(MyApp());
+import 'model/meal.dart';
+
+//void main() => runApp(MyApp());
+
+void main() => runApp(ChangeNotifierProvider<Meal>(builder: (BuildContext context)=> Meal(),
+    child: MyApp()));
+
 
 class MyApp extends StatelessWidget {
   @override

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:foodrecipes/components/favourite.dart';
 import '../model/meal.dart';
 import '../theme.dart';
 import 'dart:ui';
@@ -86,8 +87,9 @@ class RecipeCard extends StatelessWidget {
                       print('Favourite');
                     },
                     child: Icon(
-                      FontAwesomeIcons.heart,
-                      color: shadedWhite,
+                      Icons.favorite,
+                      color: meal.isFavourite ? Colors.red :shadedWhite,
+
                     ),
                   )
                 ],
@@ -216,7 +218,10 @@ Future<List<Meal>> getMealUrl() async {
 
   List<Meal> meals = List<Meal>();
   for (int i = 0; i < mealDataString.length; i++) {
-    final Meal meal = Meal.fromJson(mealDataString[i]);
+    var tmpMeal = mealDataString[i];
+    bool favourite = await Favourite().getFavourite(tmpMeal['Name']);
+    tmpMeal['favourite']=favourite;
+    final Meal meal = Meal.fromJson(tmpMeal);
     print(meal);
     meals.add(meal);
   }

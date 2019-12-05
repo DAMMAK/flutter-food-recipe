@@ -11,6 +11,12 @@ class MealDetail extends StatelessWidget {
 
   MealDetail({this.meal}){
   //TODO Get Meal Favourite Status
+  //getFavourite();
+  }
+
+  getFavourite()async{
+    bool fav= await Favourite().getFavourite(meal.meal);
+      meal.isFavourite=fav;
 
   }
 
@@ -43,19 +49,20 @@ class MealDetail extends StatelessWidget {
                       ),
                       GestureDetector(
                         onTap: (){
-                          if(meal.isFavourite == null){
+                          if(meal.isFavourite == false){
                             Favourite().addFavourite(meal.meal, meal.Id);
                           }
+                          meal.Favourite=!meal.isFavourite;
 
                         },
-                        child: meal.isFavourite != null ? Icon(
+                        child: meal.isFavourite == true ? Icon(
                           Icons.favorite,
                           color: Colors.red,
 
                         ):
                         Icon(
                           Icons.favorite_border,
-                          color: Colors.red,
+                          color: Colors.black,
 
                         )
                         ,

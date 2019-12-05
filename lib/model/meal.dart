@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:youtube_player_flutter/youtube_player_flutter.dart';
 
-class Meal {
+class Meal extends ChangeNotifier{
   String Id;
   String meal;
   String Category;
@@ -24,6 +24,7 @@ class Meal {
       this.Measurements,
       this.Tags,
       this.ThumbImg,
+this.isFavourite,
       this.Video});
 
   factory Meal.fromJson(Map<String, dynamic> parsedJson) {
@@ -36,7 +37,7 @@ class Meal {
         measurement.add(parsedJson['Measurements'][i]);
     }
 
-    return Meal(
+    var meal = Meal(
         meal: parsedJson['Name'],
        // Area: parsedJson['American'],
         ThumbImg: parsedJson['ThumbImg'],
@@ -45,8 +46,21 @@ class Meal {
         Ingredients: ingredients,
         Instruction: parsedJson['Instruction'],
         Measurements: measurement,
+        isFavourite: parsedJson['favourite'],
         Video: YoutubePlayer.convertUrlToId(parsedJson['Video'].toString()),
       //  Tags: parsedJson['Tags']
         );
+   // meal.isFavourite= parsedJson['favourite'];
+    return meal;
   }
+
+
+void set Favourite(bool fav){
+    this.isFavourite =fav;
+    return notifyListeners();
+}
+
+bool get Favourite{
+    return this.isFavourite;
+}
 }

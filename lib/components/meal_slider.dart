@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_swiper/flutter_swiper.dart';
 import 'package:foodrecipes/components/favourite.dart';
@@ -73,13 +74,14 @@ class _MealSliderState extends State<MealSlider> {
 
   @override
   void initState() {
-    FutureBuilder(
-      future: Favourite().getAllFavourite(widget.meals),
-      builder: (BuildContext context, AsyncSnapshot snapshot){
-        if(snapshot.data !=null){
-          widget.meals = snapshot.data;
-        }
-      }
-    );
+//    FutureBuilder(
+//      future: Favourite().getAllFavourite(widget.meals),
+//      builder: (BuildContext context, AsyncSnapshot snapshot){
+//        if(snapshot.data !=null){
+//          widget.meals = snapshot.data;
+//        }
+//      }
+//    );
+
   }
 }
